@@ -21,8 +21,68 @@ module.exports = function(controller) {
               if (err) {
                 console.log(err);
               } else {
-                convo.say('I am a bot that has just joined your team');
-                convo.say('You must now /invite me to a channel so that I can be of use!');
+
+                  convo.setVar('creator', bot.config.createdBy);
+
+                  convo.say('Hey {{vars.creator}} :wave:\nI\'m so happy that I\'m part of your team now:tada:\nAs our 1st step I recommend that we make a campaign with your team for you to see how I work.\nI prepared :five:  questions so you can see which one you like the most, ok:+1:?');
+
+                  convo.ask({
+                      text: ':one: Let\'s pretend we are all heroes , what is your *super* power:muscle: ?`funny` `general`\n:two: Assuming you are Batman, who is your Robbin here? `funny``general`\n:three: Assuming that you are Luke Skywalker, who is your Master Yoda? `funny``leadership`\n:four: What is your favorite superhero movie? `funny`\n:five: How much do you agree with the statement: I feel happy at work `happiness',
+                      attachments: [
+                          {
+                              fallback: 'onboarding_question_type',
+                              color: '#bdc3c7',
+                              text: 'Which would you like to start with? ',
+                              mrkdwn_in: [
+                                  'text',
+                                  'pretext',
+                                  'fields'
+                              ],
+                              callback_id: 'onboarding_question_type',
+                              attachment_type: 'default',
+                              actions: [
+                                  {
+                                      name: '1',
+                                      text: '1',
+                                      type: 'button',
+                                      style: 'default',
+                                      value: '1'
+                                  },
+                                  {
+                                      name: '2',
+                                      text: '2',
+                                      type: 'button',
+                                      style: 'default',
+                                      value: '2'
+                                  },
+                                  {
+                                      name: '3',
+                                      text: '3',
+                                      type: 'button',
+                                      style: 'default',
+                                      value: '3'
+                                  },
+                                  {
+                                      name: '4',
+                                      text: '4',
+                                      type: 'button',
+                                      style: 'default',
+                                      value: '4'
+                                  },
+                                  {
+                                      name: '5',
+                                      text: '5',
+                                      type: 'button',
+                                      style: 'default',
+                                      value: '5'
+                                  }
+                              ]
+                          }
+                      ]
+                  });
+
+                  convo.next();
+
               }
             });
         }
