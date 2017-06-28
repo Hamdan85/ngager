@@ -3,3 +3,4 @@ node_modules
 components/routes/_*
 .DS_Store
 .idea
+/.env
